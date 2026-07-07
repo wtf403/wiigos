@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#001B4C">
-    <title>Wiigos</title>
+    <meta name="theme-color" content="#ffffff">
+    <title>Паспорт - Wiigos</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="icon-192.png">
-    <link rel="apple-touch-icon" href="icon-192.png">
     <style>
         * {
             margin: 0;
@@ -21,7 +19,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: #001B4C;
+            background-color: #ffffff;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -46,25 +44,25 @@
             display: block;
         }
 
-        map area {
-            cursor: pointer;
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 27, 76, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-button">← Назад</a>
     <div class="container">
-        <img src="imgs/home.png" alt="Главная" usemap="#home-map">
-        <map name="home-map">
-            <area shape="rect" coords="0,0,100%,100%" href="passport.html" alt="Паспорт">
-        </map>
+        <img src="imgs/passp.png" alt="Паспорт">
     </div>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker registered', reg))
-                .catch(err => console.log('Service Worker registration failed', err));
-        }
-    </script>
 </body>
 </html>
