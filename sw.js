@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wiigos-v2';
+const CACHE_NAME = 'wiigos-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -6,9 +6,11 @@ const urlsToCache = [
   '/imgs/home.png',
   '/imgs/passp.png',
   '/imgs/footer.png',
+  '/imgs/logo.png',
   '/manifest.json',
   '/icon-192.png',
-  '/icon-512.png'
+  '/icon-512.png',
+  '/apple-touch-icon.png'
 ];
 
 self.addEventListener('install', event => {
