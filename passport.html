@@ -59,5 +59,42 @@
             <area shape="rect" coords="0,0,1170,2438" href="index.html" alt="Назад">
         </map>
     </div>
+
+    <script>
+        // Responsive image map resizer
+        (function() {
+            function resizeMap() {
+                const img = document.querySelector('img[usemap]');
+                const map = document.querySelector('map[name="passp-map"]');
+                if (!img || !map) return;
+
+                const areas = map.querySelectorAll('area');
+                const imgWidth = img.naturalWidth;
+                const imgHeight = img.naturalHeight;
+                const displayWidth = img.offsetWidth;
+                const displayHeight = img.offsetHeight;
+
+                const scaleX = displayWidth / imgWidth;
+                const scaleY = displayHeight / imgHeight;
+
+                areas.forEach(area => {
+                    const originalCoords = area.dataset.coords || area.getAttribute('coords');
+                    if (!area.dataset.coords) {
+                        area.dataset.coords = originalCoords;
+                    }
+
+                    const coords = originalCoords.split(',').map(Number);
+                    const scaledCoords = coords.map((coord, i) => {
+                        return Math.round(coord * (i % 2 === 0 ? scaleX : scaleY));
+                    });
+
+                    area.setAttribute('coords', scaledCoords.join(','));
+                });
+            }
+
+            window.addEventListener('load', resizeMap);
+            window.addEventListener('resize', resizeMap);
+        })();
+    </script>
 </body>
 </html>
