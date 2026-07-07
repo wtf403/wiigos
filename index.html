@@ -1,120 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#001B4C">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="theme-color" content="#001B4C" />
     <title>Wiigos</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="icon-192.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" href="icon-192.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        html, body {
-            width: 100%;
-            min-height: 100%;
-            overflow: auto;
-            background-color: #001B4C;
-            -webkit-overflow-scrolling: touch;
-        }
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        overflow: auto;
+        background-color: #001b4c;
+        -webkit-overflow-scrolling: touch;
+      }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 0;
-            touch-action: pan-y;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0;
+        touch-action: pan-y;
+      }
 
-        .container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
 
-        map area {
-            cursor: pointer;
-        }
+      map area {
+        cursor: pointer;
+      }
 
-        .footer {
-            width: 100%;
-        }
+      .footer {
+        width: 100%;
+      }
 
-        .footer img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+      .footer img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <img src="imgs/home.png" alt="Главная" usemap="#home-map">
-        <map name="home-map">
-            <area shape="rect" coords="0,520,1170,650" href="passport.html" alt="Паспорт">
-        </map>
+      <img src="imgs/home.png" alt="Главная" usemap="#home-map" />
+      <map name="home-map">
+        <area
+          shape="rect"
+          coords="0,1040,1170,1850"
+          href="passport.html"
+          alt="Паспорт"
+        />
+      </map>
     </div>
 
     <div class="footer">
-        <img src="imgs/footer.png" alt="Footer">
+      <img src="imgs/footer.png" alt="Footer" />
     </div>
 
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker registered', reg))
-                .catch(err => console.log('Service Worker registration failed', err));
-        }
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then((reg) => console.log("Service Worker registered", reg))
+          .catch((err) =>
+            console.log("Service Worker registration failed", err),
+          );
+      }
 
-        // Responsive image map resizer
-        (function() {
-            function resizeMap() {
-                const img = document.querySelector('img[usemap]');
-                const map = document.querySelector('map[name="home-map"]');
-                if (!img || !map) return;
+      // Responsive image map resizer
+      (function () {
+        function resizeMap() {
+          const img = document.querySelector("img[usemap]");
+          const map = document.querySelector('map[name="home-map"]');
+          if (!img || !map) return;
 
-                const areas = map.querySelectorAll('area');
-                const imgWidth = img.naturalWidth;
-                const imgHeight = img.naturalHeight;
-                const displayWidth = img.offsetWidth;
-                const displayHeight = img.offsetHeight;
+          const areas = map.querySelectorAll("area");
+          const imgWidth = img.naturalWidth;
+          const imgHeight = img.naturalHeight;
+          const displayWidth = img.offsetWidth;
+          const displayHeight = img.offsetHeight;
 
-                const scaleX = displayWidth / imgWidth;
-                const scaleY = displayHeight / imgHeight;
+          const scaleX = displayWidth / imgWidth;
+          const scaleY = displayHeight / imgHeight;
 
-                areas.forEach(area => {
-                    const originalCoords = area.dataset.coords || area.getAttribute('coords');
-                    if (!area.dataset.coords) {
-                        area.dataset.coords = originalCoords;
-                    }
-
-                    const coords = originalCoords.split(',').map(Number);
-                    const scaledCoords = coords.map((coord, i) => {
-                        return Math.round(coord * (i % 2 === 0 ? scaleX : scaleY));
-                    });
-
-                    area.setAttribute('coords', scaledCoords.join(','));
-                });
+          areas.forEach((area) => {
+            const originalCoords =
+              area.dataset.coords || area.getAttribute("coords");
+            if (!area.dataset.coords) {
+              area.dataset.coords = originalCoords;
             }
 
-            window.addEventListener('load', resizeMap);
-            window.addEventListener('resize', resizeMap);
-        })();
+            const coords = originalCoords.split(",").map(Number);
+            const scaledCoords = coords.map((coord, i) => {
+              return Math.round(coord * (i % 2 === 0 ? scaleX : scaleY));
+            });
+
+            area.setAttribute("coords", scaledCoords.join(","));
+          });
+        }
+
+        window.addEventListener("load", resizeMap);
+        window.addEventListener("resize", resizeMap);
+      })();
     </script>
-</body>
+  </body>
 </html>
