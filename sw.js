@@ -1,10 +1,11 @@
-const CACHE_NAME = 'wiigos-v1';
+const CACHE_NAME = 'wiigos-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/passport.html',
   '/imgs/home.png',
   '/imgs/passp.png',
+  '/imgs/footer.png',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png'

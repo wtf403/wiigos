@@ -49,6 +49,19 @@
         map area {
             cursor: pointer;
         }
+
+        .footer {
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .footer img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +70,10 @@
         <map name="home-map">
             <area shape="rect" coords="0,520,1170,650" href="passport.html" alt="Паспорт">
         </map>
+    </div>
+
+    <div class="footer">
+        <img src="imgs/footer.png" alt="Footer">
     </div>
 
     <script>
